@@ -10,7 +10,6 @@ void merge(int *vec, int n) {
   tmp = (int *) malloc(n * sizeof(int));
   if (tmp == NULL) {
   	printf("Memoria insuficiente.\n");
-  	getch();
     exit(1);
   }
 
