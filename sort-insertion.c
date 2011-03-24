@@ -1,7 +1,7 @@
 #include <stdio.h>
-#define max 5
+#define max 10
 
-void insercao(int n, int vet[]) {
+void insertion(int n, int *vet) {
 	int i, j, x;
 	for (i = 1; i < n; i++) {
 		x = vet[i];
@@ -13,12 +13,11 @@ void insercao(int n, int vet[]) {
 }
 
 int main() {
-	int vetor[max] = {7,3,2,5,4};
+	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	insercao(max,vetor);
+	insertion(max,vetor);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}
-	getch();
 	return(0);
 }
