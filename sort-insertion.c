@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define max 10
 
-void insertion(int n, int *vet) {
+void insertionsort(int *vet, int n) {
 	int i, j, x;
 	for (i = 1; i < n; i++) {
 		x = vet[i];
@@ -15,7 +15,7 @@ void insertion(int n, int *vet) {
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	insertion(max,vetor);
+	insertionsort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}

@@ -2,16 +2,17 @@
 #define max 10
 
 int sorteado(int *vet, int n) {
-	while (--n >= 1) {
+	while (n >= 1) {
 		if (vet[n] < vet[n-1]) {
 			return(0);
 		}
+		n--;
 	}
 	return(1);
 }
 
 void embaralha(int *vet, int n) {
-	int i, tmp, r;
+	int i, r, tmp;
 	for(i = 0; i < n; i++) {
 		tmp = vet[i];
 		r = rand() % n;

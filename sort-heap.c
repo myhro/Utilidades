@@ -3,7 +3,7 @@
 
 void peneira(int *vet, int raiz, int fundo);
 
-void heapSort(int n, int *vet) {
+void heapsort(int *vet, int n) {
 	int i, tmp;
 
 	for (i = (n / 2); i >= 0; i--) {
@@ -48,7 +48,7 @@ void peneira(int *vet, int raiz, int fundo) {
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	heapSort(max,vetor);
+	heapsort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}

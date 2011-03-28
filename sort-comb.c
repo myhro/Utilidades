@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define max 10
 
-void comb(int n, int *vet) {
+void combsort(int *vet, int n) {
 	float shrink_factor = 1.247330950103979; // shrink_factor = 1 / (1 - (1/e^phi))
 	int gap = n, trocado = 1, tmp, i;
 
@@ -28,7 +28,7 @@ void comb(int n, int *vet) {
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	comb(max,vetor);
+	combsort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define max 10
 
-void shell(int *vet, int n) {
+void shellsort(int *vet, int n) {
     int i, j, tmp;
     int h = 1;
     do {
@@ -24,7 +24,7 @@ void shell(int *vet, int n) {
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	shell(vetor,max);
+	shellsort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}

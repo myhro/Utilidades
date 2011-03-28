@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define max 10
 
-void bubble(int n, int* vet) {
+void bubblesort(int* vet, int n) {
 	int i, j, tmp;
 	for (i = n-1; i >= 1; i--) {
 		for (j = 0; j < i; j++) {
@@ -17,7 +17,7 @@ void bubble(int n, int* vet) {
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	bubble(max,vetor);
+	bubblesort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}

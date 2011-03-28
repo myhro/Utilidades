@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define max 10
 
-void merge(int *vec, int n) {
+void merge(int *vet, int n) {
   int mid;
   int i, j, k;
   int *tmp;
@@ -19,12 +19,12 @@ void merge(int *vec, int n) {
   j = mid;
   k = 0;
   while (i < mid && j < n) {
-    if (vec[i] < vec[j]) {
-      tmp[k] = vec[i];
+    if (vet[i] < vet[j]) {
+      tmp[k] = vet[i];
       i++;
     }
     else {
-      tmp[k] = vec[j];
+      tmp[k] = vet[j];
       j++;
     }
     k++;
@@ -32,41 +32,41 @@ void merge(int *vec, int n) {
 
   if (i == mid) {
     while (j < n) {
-      tmp[k] = vec[j];
+      tmp[k] = vet[j];
       j++;
       k++;
     }
   }
   else {
     while (i < mid) {
-      tmp[k] = vec[i];
+      tmp[k] = vet[i];
       i++;
       k++;
     }
   }
 
   for (i = 0; i < n; ++i) {
-    vec[i] = tmp[i];
+    vet[i] = tmp[i];
   }
 
   free(tmp);
 }
 
-void mergeSort(int *vec, int n) {
+void mergesort(int *vet, int n) {
   int mid;
 
   if (n > 1) {
     mid = n / 2;
-    mergeSort(vec, mid);
-    mergeSort(vec + mid, n - mid);
-    merge(vec, n);
+    mergesort(vet, mid);
+    mergesort(vet + mid, n - mid);
+    merge(vet, n);
   }
 }
 
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	mergeSort(vetor,max);
+	mergesort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}
