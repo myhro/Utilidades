@@ -13,10 +13,10 @@ void shellsort(int *vet, int n) {
             tmp = vet[i];
             j = i - h;
             while (j >= 0 && tmp < vet[j]) {
-                vet [j + h] = vet[j];
+                vet[j + h] = vet[j];
                 j -= h;
             }
-            vet [j + h] = tmp;
+            vet[j + h] = tmp;
         }
     } while ( h > 1);
 }
