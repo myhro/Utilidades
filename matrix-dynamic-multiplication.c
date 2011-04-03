@@ -30,7 +30,6 @@ void multiplica(int *mat_a, int *mat_b, int l_a, int c_a, int c_b, int *res) {
 	for (i = 0; i < l_a; i++) {
 		for (j = 0; j < c_b; j++) {
 			for (k = 0; k < c_a; k++) {
-				//printf("\nk = %d, j = %d, i = %d\n%d += %d * %d", k, j, i, res[i*c_b+j],mat_a[i*c_a+k],mat_b[k*c_b+j]);
 				res[i*c_b+j] += mat_a[i*c_a+k] * mat_b[k*c_b+j];
 			}
 		}
