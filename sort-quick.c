@@ -1,42 +1,46 @@
 #include <stdio.h>
 #define max 10
 
-void troca(int *a, int *b) {
-	int tmp;
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
+void quicksort(int *vet, int n) {
+	int a = 1, b = (n - 1), temp, x = vet[0];
 
-int particionar(int *vet, int esq, int dir) {
-	int i, j;
+	if (n <= 1) {
+		return;
+	}
 
-	i = esq;
-	for (j = esq + 1; j <= dir; j++) {
-		if (vet[j] < vet[esq]) {
-			i++;
-			troca(&vet[i], &vet[j]);
+	while (1) {
+		while ((a < n) && (vet[a] <= x)) {
+			a++;
+		}
+
+		while (vet[b] > x) {
+			b--;
+		}
+
+		if (a < b) {
+			temp = vet[a];
+			vet[a] = vet[b];
+			vet[b] = temp;
+			a++;
+			b--;
+		}
+
+		if (a >= b) {
+			break;
 		}
 	}
-	troca(&vet[esq], &vet[i]);
 
-	return i;
-}
+	vet[0] = vet[b];
+	vet[b] = x;
 
-void quicksort(int *vet, int esq, int dir) {
-	int r;
-
-	if (dir > esq) {
-		r = particionar(vet, esq, dir);
-		quicksort(vet, esq, r - 1);
-		quicksort(vet, r + 1, dir);
-	}
+	quicksort(vet,b);
+	quicksort(&vet[a],(n - a));
 }
 
 int main() {
 	int vetor[max] = {5,2,7,8,10,6,1,4,9,3};
 	int i;
-	quicksort(vetor,0,(max-1));
+	quicksort(vetor,max);
 	for (i = 0; i < max; i++) {
 		printf("%d ", vetor[i]);
 	}
