@@ -78,12 +78,12 @@ Arvore* retira(Arvore* a, int n) {
             free(a);
             a = NULL;
         }
-        else if (vazia(a->esq)) { /* só tem filho à direita */
+        else if (vazia(a->esq)) { /* sÃ³ tem filho Ã  direita */
             tmp = a;
             a = a->dir;
             free(tmp);
         }
-        else if (vazia(a->dir)) { /* só tem filho à esquerda */
+        else if (vazia(a->dir)) { /* sÃ³ tem filho Ã  esquerda */
             tmp = a;
             a = a->esq;
             free(tmp);
@@ -95,7 +95,7 @@ Arvore* retira(Arvore* a, int n) {
                 pai = filho;
                 filho = filho->dir;
             }
-            a->info = filho->info; /* troca as informações */
+            a->info = filho->info; /* troca as informaÃ§Ãµes */
             filho->info = n;
             a->esq = retira(a->esq,n);
             }
