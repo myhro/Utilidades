@@ -42,7 +42,7 @@ Arvore *libera(Arvore *a) {
 
 int busca(Arvore *a, int n) {
     if (vazia(a))
-        return -1;
+        return 0;
     else if (a->info > n)
         return busca(a->esq,n);
     else if (a->info < n)
@@ -73,34 +73,63 @@ Arvore* retira(Arvore* a, int n) {
         a->esq = retira(a->esq, n);
     else if (a->info < n)
         a->dir = retira(a->dir, n);
-    else { /* achou o elemento */
-        if (vazia(a->esq) && vazia(a->dir)) { /* elemento sem filhos */
+    else { // Achou o elemento
+        if (vazia(a->esq) && vazia(a->dir)) { // Nó sem filhos
             free(a);
             a = NULL;
         }
-        else if (vazia(a->esq)) { /* só tem filho à direita */
+        else if (vazia(a->esq)) { // Só tem filho à direita
             tmp = a;
             a = a->dir;
             free(tmp);
         }
-        else if (vazia(a->dir)) { /* só tem filho à esquerda */
+        else if (vazia(a->dir)) { // Só tem filho à esquerda
             tmp = a;
             a = a->esq;
             free(tmp);
         }
-        else { /* tem os dois filhos */
+        else { // Tem os dois filhos
             pai = a;
             filho = a->esq;
             while (!vazia(filho->dir)) {
                 pai = filho;
                 filho = filho->dir;
             }
-            a->info = filho->info; /* troca as informações */
+            a->info = filho->info; // Troca as informações
             filho->info = n;
             a->esq = retira(a->esq,n);
             }
     }
     return a;
+}
+
+int contar_nos(Arvore *a) {
+    if (vazia(a))
+        return 0;
+    else
+        return (1 + contar_nos(a->esq) + contar_nos(a->dir));
+}
+
+int contar_folhas(Arvore *a) {
+    if (vazia(a))
+        return 0;
+    if (vazia(a->esq) && vazia(a->dir))
+        return 1;
+    return (contar_folhas(a->esq) + contar_folhas(a->dir));
+}
+
+int altura(Arvore *a) {
+    int he, hd;
+    if (vazia(a))
+        return -1; // Se a árvore não tiver nós, sua altura é -1
+    else {
+        he = altura(a->esq);
+        hd = altura(a->dir);
+    if (he < hd)
+        return hd + 1;
+    else
+        return he + 1;
+   }
 }
 
 void linha() {
@@ -112,7 +141,6 @@ void linha() {
 
 int main() {
     Arvore *arv = inicializa(arv);
-    int i, tmp;
 
     arv = insere(arv,5);
     arv = insere(arv,9);
@@ -125,6 +153,7 @@ int main() {
     arv = insere(arv,6);
     imprime(arv);
 
+    printf("Nos: %d \t Folhas: %d \t Altura: %d\n", contar_nos(arv), contar_folhas(arv), altura(arv));
     linha();
 
     arv = retira(arv,5);
@@ -138,14 +167,15 @@ int main() {
     arv = retira(arv,6);
     imprime(arv);
 
+    printf("Nos: %d \t Folhas: %d \t Altura: %d\n", contar_nos(arv), contar_folhas(arv), altura(arv));
     linha();
 
-    tmp = busca(arv,7);
-    printf("%d\n", tmp);
+    printf("Encontrou 7: %d \t\t Nao encontrou 10: %d\n", busca(arv,7), busca(arv,10));
 
     linha();
 
     arv = libera(arv);
+    printf("Nos: %d \t Folhas: %d \t Altura: %d\n", contar_nos(arv), contar_folhas(arv), altura(arv));
     imprime(arv);
 
     return 0;
