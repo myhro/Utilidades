@@ -142,24 +142,28 @@ void linha() {
 int main() {
     Arvore *arv = inicializa(arv);
 
-	// Não é necessário retornar o ponteiro ao se adicionar ou remover um nó, exceto ao inserir a raiz...
+	/*
+		Não é necessário retornar o ponteiro ao se adicionar um nó, exceto ao inserir a raiz. Embora
+		seja interessante o retorno pois a árvore pode ter sido reinicializada (em um menu, por ex).
+	*/
     arv = insere(arv,5);
-    insere(arv,9);
-    insere(arv,3);
-    insere(arv,1);
-    insere(arv,4);
-    insere(arv,8);
-    insere(arv,2);
-    insere(arv,7);
-    insere(arv,6);
+    arv = insere(arv,9);
+    arv = insere(arv,3);
+    arv = insere(arv,1);
+    arv = insere(arv,4);
+    arv = insere(arv,8);
+    arv = insere(arv,2);
+    arv = insere(arv,7);
+    arv = insere(arv,6);
     imprime(arv);
 
     printf("Nos: %d \t Folhas: %d \t Altura: %d\n", contar_nos(arv), contar_folhas(arv), altura(arv));
     linha();
 
 	/*
-		... mas é interessante retornar na retirada, pois caso o último nó for removido, o ponteiro da árvore
-		tem de apontar pra NULL, caso contrário as próximas chamadas de funções podem gerar erros...
+		É necessário receber o ponteiro na retirada, pois caso o último nó for removido (ou o nó seja
+		a raiz e não possua subárvore a esquerda) os endereços (apontando para NULL no primeiro caso)
+		mudam e as próximas chamadas de funções	podem gerar erros.
 	*/
     arv = retira(arv,5);
     //arv = retira(arv,9);
@@ -179,7 +183,7 @@ int main() {
 
     linha();
 
-    arv = libera(arv); // ... que é a mesma coisa que acontece ao se liberar (remover todos os nós) a árvore.
+    arv = libera(arv); // A mesma coisa acontece ao se liberar (remover todos os nós) a árvore.
     printf("Nos: %d \t Folhas: %d \t Altura: %d\n", contar_nos(arv), contar_folhas(arv), altura(arv));
     imprime(arv);
 
