@@ -8,10 +8,10 @@ int pesquisa(int *vet, int n, int chave) {
 	while (1) {
 		i = (esq + dir) / 2;
 		if (chave > vet[i]) {
-			esq++;
+			esq = i + 1;
 		}
 		else {
-			dir--;
+			dir = i - 1;
 		}
 		if (chave == vet[i] || esq > dir) {
 			break;
